@@ -1,0 +1,33 @@
+sudo apt update
+sudo apt upgrade
+sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt install -y nodejssudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+sudo apt install -y mongodb
+sudo service mongodb start
+sudo apt install -y npm
+sudo npm install body-parser
+mkdir Books && cd Books
+npm init
+vi server.js
+sudo npm install express mongoose
+mkdir apps && cd apps
+vi routes.js
+var mongoose = require('mongoose');
+var dbHost = 'mongodb://localhost:27017/test';
+mongoose.connect(dbHost);
+mongoose.connection;
+mongoose.set('debug', true);
+var bookSchema = mongoose.Schema( {
+  name: String,
+  isbn: {type: String, index: true},
+  author: String,
+  pages: Number
+});
+var Book = mongoose.model('Book', bookSchema);
+module.exports = mongoose.model('Book', bookSchema);
+cd ../..
+mkdir public && cd public
+vi script.js
+vi index.html
+cd ..
